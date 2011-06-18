@@ -48,7 +48,7 @@ module Guard
     def jammit
       ::Jammit.load_configuration ::Jammit::DEFAULT_CONFIG_PATH
       puts "Jamming"
-      ::Jammit.packager.force = true
+      ::Jammit.packager.force = false
       ::Jammit.packager.precache_all
       true
     end
