@@ -158,7 +158,7 @@ describe Guard::Jammit do
 
     context 'for a successfull operation' do
       it 'shows a success message' do
-        Guard::UI.should_receive(:info).with('Jammit successfull packaged the assets.')
+        Guard::UI.should_receive(:info).with('Jammit successfully packaged the assets.')
         guard.jammit
       end
 
@@ -167,7 +167,7 @@ describe Guard::Jammit do
           let(:guard) { Guard::Jammit.new(nil, { :notification => true, :hide_success => false }) }
 
           it 'shows the success notification' do
-            Guard::Notifier.should_receive(:notify).with('Jammit successfull packaged the assets.', :title => 'Jammit')
+            Guard::Notifier.should_receive(:notify).with('Jammit successfully packaged the assets.', :title => 'Jammit')
             guard.jammit
           end
         end
