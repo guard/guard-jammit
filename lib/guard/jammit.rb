@@ -1,6 +1,7 @@
-require 'jammit'
+# Do NOT require "guard/plugin"
+# It will either be required or a stub will be supplied by the test class
 
-require 'guard/plugin'
+require 'jammit'
 
 module Guard
   # The Jammit Guard that gets notifications about the following

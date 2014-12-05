@@ -14,6 +14,7 @@ end
 group :development do
   gem 'rake', require: false
   gem 'rspec', require: false
+  gem 'guard-compat', require: false
 end
 
 platforms :rbx do

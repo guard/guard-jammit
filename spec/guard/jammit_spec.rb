@@ -1,12 +1,5 @@
+require 'guard/compat/test/helper'
 require 'guard/jammit'
-
-module Guard
-  class Plugin
-    def initialize(options)
-      @options = options
-    end
-  end
-end
 
 RSpec.describe Guard::Jammit do
   let(:guard)    { Guard::Jammit.new }
@@ -14,6 +7,8 @@ RSpec.describe Guard::Jammit do
 
   before do
     allow(Guard::Notifier).to receive(:notify)
+    allow(Guard::UI).to receive(:info)
+    allow(Guard::UI).to receive(:error)
   end
 
   describe '#initialize' do
