@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = 'guard-jammit'
 
   s.add_dependency 'guard',      '>= 2.1.0'
+  s.add_dependency 'guard-compat', '~> 1.0'
   s.add_dependency 'jammit'
 
   s.add_development_dependency 'bundler'

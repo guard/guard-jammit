@@ -6,9 +6,9 @@ RSpec.describe Guard::Jammit do
   let(:defaults) { Guard::Jammit::DEFAULT_OPTIONS }
 
   before do
-    allow(Guard::Notifier).to receive(:notify)
-    allow(Guard::UI).to receive(:info)
-    allow(Guard::UI).to receive(:error)
+    allow(Guard::Compat::UI).to receive(:notify)
+    allow(Guard::Compat::UI).to receive(:info)
+    allow(Guard::Compat::UI).to receive(:error)
   end
 
   describe '#initialize' do
@@ -163,7 +163,7 @@ RSpec.describe Guard::Jammit do
 
     context 'for a successfull operation' do
       it 'shows a success message' do
-        expect(Guard::UI).to receive(:info).with('Jammit successfully packaged the assets.')
+        expect(Guard::Compat::UI).to receive(:info).with('Jammit successfully packaged the assets.')
         guard.jammit
       end
 
@@ -172,7 +172,7 @@ RSpec.describe Guard::Jammit do
           let(:guard) { Guard::Jammit.new(notification: true, hide_success: false) }
 
           it 'shows the success notification' do
-            expect(Guard::Notifier).to receive(:notify).with('Jammit successfully packaged the assets.', title: 'Jammit')
+            expect(Guard::Compat::UI).to receive(:notify).with('Jammit successfully packaged the assets.', title: 'Jammit')
             guard.jammit
           end
         end
@@ -181,7 +181,7 @@ RSpec.describe Guard::Jammit do
           let(:guard) { Guard::Jammit.new(notification: true, hide_success: true) }
 
           it 'does not show the success notification' do
-            expect(Guard::Notifier).not_to receive(:notify)
+            expect(Guard::Compat::UI).not_to receive(:notify)
             guard.jammit
           end
         end
@@ -191,7 +191,7 @@ RSpec.describe Guard::Jammit do
         let(:guard) { Guard::Jammit.new(notification: false) }
 
         it 'does not show the success notification' do
-          expect(Guard::Notifier).not_to receive(:notify)
+          expect(Guard::Compat::UI).not_to receive(:notify)
           guard.jammit
         end
       end
@@ -201,7 +201,7 @@ RSpec.describe Guard::Jammit do
       before { allow(::Jammit).to receive(:package!).and_raise('A Jammit error') }
 
       it 'shows a failure message' do
-        expect(Guard::UI).to receive(:error).with('Jammit failed to package the assets: A Jammit error')
+        expect(Guard::Compat::UI).to receive(:error).with('Jammit failed to package the assets: A Jammit error')
         guard.jammit
       end
 
@@ -209,7 +209,7 @@ RSpec.describe Guard::Jammit do
         let(:guard) { Guard::Jammit.new(notification: true) }
 
         it 'shows the failure notification' do
-          expect(Guard::Notifier).to receive(:notify).with('Jammit failed to package the assets.', title: 'Jammit', image: :failed)
+          expect(Guard::Compat::UI).to receive(:notify).with('Jammit failed to package the assets.', title: 'Jammit', image: :failed)
           guard.jammit
         end
       end
@@ -218,7 +218,7 @@ RSpec.describe Guard::Jammit do
         let(:guard) { Guard::Jammit.new(notification: false) }
 
         it 'does not show the failure notification' do
-          expect(Guard::Notifier).not_to receive(:notify)
+          expect(Guard::Compat::UI).not_to receive(:notify)
           guard.jammit
         end
       end

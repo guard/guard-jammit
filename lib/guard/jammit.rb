@@ -45,7 +45,7 @@ module Guard
     def start
       ensure_rails_env!
 
-      ::Guard::UI.info "Using Jammit version #{::Jammit::VERSION}"
+      Compat::UI.info "Using Jammit version #{::Jammit::VERSION}"
 
       jammit if @options[:package_on_start]
     end
@@ -74,12 +74,12 @@ module Guard
 
       ::Jammit.package! @options
 
-      ::Guard::UI.info 'Jammit successfully packaged the assets.'
-      ::Guard::Notifier.notify('Jammit successfully packaged the assets.', title: 'Jammit') if @options[:notification] && !@options[:hide_success]
+      Compat::UI.info 'Jammit successfully packaged the assets.'
+      Compat::UI.notify('Jammit successfully packaged the assets.', title: 'Jammit') if @options[:notification] && !@options[:hide_success]
 
     rescue RuntimeError => e
-      ::Guard::UI.error("Jammit failed to package the assets: #{e.message}")
-      ::Guard::Notifier.notify('Jammit failed to package the assets.', title: 'Jammit', image: :failed) if @options[:notification]
+      Compat::UI.error("Jammit failed to package the assets: #{e.message}")
+      Compat::UI.notify('Jammit failed to package the assets.', title: 'Jammit', image: :failed) if @options[:notification]
     end
 
     private
