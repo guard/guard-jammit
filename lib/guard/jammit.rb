@@ -2,6 +2,7 @@
 # It will either be required or a stub will be supplied by the test class
 
 require 'jammit'
+require 'guard/compat/plugin'
 
 module Guard
   # The Jammit Guard that gets notifications about the following
